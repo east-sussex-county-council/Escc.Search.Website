@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<configuration>
+    <appSettings>
+        <add key="GoogleSearchEngineId" value="your search engine id here"/>
+        <add key="CacheFilePath" value="application folder to save cached search results in"/>
+        <add key="CacheHours" value="number of hours to cache results for"/>
+    </appSettings>
+    <system.web>
+    <compilation debug="true" targetFramework="4.0"/>
+    <pages masterPageFile="path to master page" enableViewState="false" clientIDMode="AutoID">
+      <controls>
+        <!-- Add controls which are declared at root of site, repeated here in dev only for Visual Studio intellisense-->
+        <add tagPrefix="EastSussexGovUK" namespace="EsccWebTeam.EastSussexGovUK" assembly="EsccWebTeam.EastSussexGovUK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+        <add tagPrefix="Egms" namespace="EsccWebTeam.Egms" assembly="EsccWebTeam.Egms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+        <add tagPrefix="NavigationControls" namespace="EsccWebTeam.NavigationControls" assembly="EsccWebTeam.NavigationControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+      </controls>
+    </pages>
+  </system.web>
+</configuration>
