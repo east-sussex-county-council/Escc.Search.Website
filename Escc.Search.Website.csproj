@@ -30,6 +30,10 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -107,11 +111,11 @@
     <Folder Include="js\min\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Inetpub\wwwroot\eastsussex.gov.uk.csproj">
+    <ProjectReference Include="..\Escc.EastSussexGovUK\EsccWebTeam.EastSussexGovUK.csproj">
       <Project>{1426FEF0-23DC-4C23-AE15-67F2527BD741}</Project>
-      <Name>eastsussex.gov.uk</Name>
+      <Name>EsccWebTeam.EastSussexGovUK</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VS Projects\_Libraries for re-use\EsccWebTeam.Data.Web\EsccWebTeam.Data.Web.csproj">
+    <ProjectReference Include="..\Escc.Data.Web\EsccWebTeam.Data.Web.csproj">
       <Project>{9C56D3DD-4952-4A1B-9AD6-907A1142872F}</Project>
       <Name>EsccWebTeam.Data.Web</Name>
     </ProjectReference>
@@ -123,7 +127,7 @@
       <Project>{B8F4E772-DB03-4D30-A590-930E0D42913A}</Project>
       <Name>Escc.Search</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VS Projects\_Libraries for re-use\EsccWebTeam.NavigationControls\EsccWebTeam.NavigationControls.csproj">
+    <ProjectReference Include="..\Escc.NavigationControls\EsccWebTeam.NavigationControls.csproj">
       <Project>{0323F668-1723-44A1-8C94-F91DC59EF315}</Project>
       <Name>EsccWebTeam.NavigationControls</Name>
     </ProjectReference>
