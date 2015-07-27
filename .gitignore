@@ -30,3 +30,5 @@ _ReSharper*/
 *.config
 *.scc
 App_Data
+packages
+js/min/*.*

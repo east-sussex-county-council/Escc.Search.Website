@@ -119,17 +119,17 @@
       <Project>{9C56D3DD-4952-4A1B-9AD6-907A1142872F}</Project>
       <Name>EsccWebTeam.Data.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Git\Escc.Search.Google\Escc.Search.Google.csproj">
-      <Project>{ABD98B1D-E382-4F91-B57E-3E51F83939BD}</Project>
-      <Name>Escc.Search.Google</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Git\Escc.Search\Escc.Search.csproj">
-      <Project>{B8F4E772-DB03-4D30-A590-930E0D42913A}</Project>
-      <Name>Escc.Search</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Escc.NavigationControls\EsccWebTeam.NavigationControls.csproj">
       <Project>{0323F668-1723-44A1-8C94-F91DC59EF315}</Project>
       <Name>EsccWebTeam.NavigationControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Escc.Search.Google\Escc.Search.Google.csproj">
+      <Project>{abd98b1d-e382-4f91-b57e-3e51f83939bd}</Project>
+      <Name>Escc.Search.Google</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Escc.Search\Escc.Search.csproj">
+      <Project>{b8f4e772-db03-4d30-a590-930e0d42913a}</Project>
+      <Name>Escc.Search</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -148,16 +148,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2007</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/search</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
