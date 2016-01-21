@@ -1,13 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="Escc.Search.Website.SearchPage" ValidateRequest="false" %>
 <asp:Content runat="server" ContentPlaceHolderID="metadata">
-    <Egms:MetadataControl runat="server" 
+    <Metadata:MetadataControl runat="server" 
         Title="Search results"
         DateCreated="2012-03-16"
    		IpsvPreferredTerms="Local government"
 		LgtlType="Search results"
 		IsInSearch="false"
     />
-    <Egms:Css runat="server" Files="Search;FormsSmall" />
+    <ClientDependency:Css runat="server" Files="Search;FormsSmall" />
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="content">
@@ -77,12 +77,12 @@
     </div>
 
     <div class="supporting-text">
-        <p>These search results are from <img src="/search/img/google.gif" alt="Google logo" width="88" height="30" class="google" /></p>
+        <p>These search results are from <img src="<%= ResolveUrl("~/") %>img/google.gif" alt="Google logo" width="88" height="30" class="google" /></p>
     </div>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="supporting" />
 
 <asp:Content runat="server" ContentPlaceHolderID="javascript">
-    <Egms:Script runat="server" Files="Search" />
+    <ClientDependency:Script runat="server" Files="Search" />
 </asp:Content>
