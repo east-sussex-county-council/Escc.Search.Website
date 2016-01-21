@@ -28,7 +28,9 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 *.config
+!*.example.config
 *.scc
 App_Data
 packages
-js/min/*.*
+*/js/min/*.*
+*/css/min/*.*

@@ -7,7 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml;
 using Escc.Search.Google;
 using EsccWebTeam.Data.Web;
-using Microsoft.ApplicationBlocks.ExceptionManagement;
+using Exceptionless;
 
 namespace Escc.Search.Website
 {
@@ -78,12 +78,12 @@ namespace Escc.Search.Website
                 }
                 catch (XmlException ex)
                 {
-                    // This catches where malformed XML comes back from Google. Error seen a couple of times is
-                    // "Unexpected end of file has occurred. The following elements are not closed: GSP. Line 3, position 19."
+                    // This catches where Google has a 500 error and sends back malformed XML, <GSP VER="3.2"> <ERROR>500</ERROR>. 
+                    // Exception is "Unexpected end of file has occurred. The following elements are not closed: GSP. Line 3, position 19."
 
                     this.noResults.Visible = true;
                     Http.Status502BadGateway();
-                    ExceptionManager.Publish(ex);
+                    ex.ToExceptionless().Submit();
                 }
             }
             else
