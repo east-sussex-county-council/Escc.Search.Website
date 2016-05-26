@@ -5,7 +5,8 @@
   <UsingTask TaskName="JavaScriptCompressorTask" AssemblyFile="$(MSBuildProjectDirectory)\bin\Yahoo.Yui.Compressor.Build.MsBuild.dll" />
 
   <Target Name="Minimize" Condition="'$(ConfigurationName)' == 'Release'">
-    <CssCompressorTask SourceFiles="css/search.css" OutputFile="css/min/search.css" />
+    <CssCompressorTask SourceFiles="css/search-small.css" OutputFile="css/min/search-small.css" />
+    <CssCompressorTask SourceFiles="css/search-medium.css" OutputFile="css/min/search-medium.css" />
     <JavaScriptCompressorTask SourceFiles="js/search.js" OutputFile="js/min/search.js" />
   </Target>
 </Project>

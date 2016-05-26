@@ -134,9 +134,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\min\search.css" />
+    <Content Include="css\min\search-medium.css" />
+    <Content Include="css\min\search-small.css" />
     <None Include="css\search-small.css" />
-    <Content Include="css\search-medium.css" />
+    <None Include="css\search-medium.css" />
     <Content Include="img\google.png" />
     <Content Include="js\min\search.js" />
     <None Include="js\search.js" />
