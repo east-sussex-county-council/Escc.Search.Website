@@ -9,8 +9,8 @@
     />
     <ClientDependency:Css runat="server" Files="SearchSmall;FormsSmall;ContentSmall" Moveable="False" />
     <EastSussexGovUK:ContextContainer runat="server" Desktop="true">
-        <ClientDependency:Css runat="server" Files="ContentMedium;SearchMedium" MediaConfiguration="Medium" Moveable="False"/>
-        <ClientDependency:Css runat="server" Files="ContentLarge" MediaConfiguration="Large" Moveable="False"/>
+        <ClientDependency:Css runat="server" Files="ContentMedium;SearchMedium;FormsMedium" MediaConfiguration="Medium" Moveable="False"/>
+        <ClientDependency:Css runat="server" Files="ContentLarge;FormsLarge" MediaConfiguration="Large" Moveable="False"/>
     </EastSussexGovUK:ContextContainer>
 </asp:Content>
 
