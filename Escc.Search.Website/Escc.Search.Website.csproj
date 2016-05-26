@@ -86,7 +86,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Escc.Web.Metadata, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Escc.Web.Metadata.1.0.1\lib\Escc.Web.Metadata.dll</HintPath>
+      <HintPath>..\packages\Escc.Web.Metadata.1.1.1\lib\Escc.Web.Metadata.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Exceptionless, Version=1.5.2121.0, Culture=neutral, PublicKeyToken=fc181f0a46f65747, processorArchitecture=MSIL">
@@ -135,8 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\min\search.css" />
-    <None Include="css\search.css" />
-    <Content Include="img\google.gif" />
+    <None Include="css\search-small.css" />
+    <Content Include="css\search-medium.css" />
+    <Content Include="img\google.png" />
     <Content Include="js\min\search.js" />
     <None Include="js\search.js" />
     <Content Include="Search.aspx" />

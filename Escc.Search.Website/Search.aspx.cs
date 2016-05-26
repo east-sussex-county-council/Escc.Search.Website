@@ -7,6 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml;
 using Escc.Search.Google;
 using EsccWebTeam.Data.Web;
+using EsccWebTeam.EastSussexGovUK.MasterPages;
 using Exceptionless;
 
 namespace Escc.Search.Website
@@ -15,6 +16,12 @@ namespace Escc.Search.Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var skinnable = Master as BaseMasterPage;
+            if (skinnable != null)
+            {
+                skinnable.Skin = new CustomerFocusSkin(ViewSelector.CurrentViewIs(MasterPageFile));
+            }
+            
             // Use standard parameter instead of the old tQ
             if (String.IsNullOrEmpty(Request.QueryString["q"]) && !String.IsNullOrEmpty(Request.QueryString["tq"]))
             {

@@ -1,0 +1,16 @@
+﻿/* Colour URL green, as on Google itself, and fix spacing within results */
+.text-content .url { margin: 0; color: #056b0b; background: #fff; }
+.text-content dd p { margin: 0 0 1.125em; }
+
+/* Highlight search term where it's included in the extract */
+mark { font-weight: bold; background: none; color: inherit; }
+
+/* Make ellipses easier to see in the extract */
+.ellipsis { font-weight: bold; }
+
+/* Align the Google logo as part of a sentence. */
+.google { vertical-align: middle; }
+
+/* .refine box applies .short-form */
+.refine .form { border-radius: 5px; }
+.refine input[type=search] { width: 100%; }
