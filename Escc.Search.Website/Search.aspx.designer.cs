@@ -46,7 +46,7 @@ namespace Escc.Search.Website {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::EsccWebTeam.NavigationControls.PagingController paging;
+        protected global::Escc.NavigationControls.WebForms.PagingController paging;
         
         /// <summary>
         /// noResults control.
