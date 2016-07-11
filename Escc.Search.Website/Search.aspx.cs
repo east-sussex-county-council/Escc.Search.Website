@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 using Escc.Search.Google;
-using EsccWebTeam.Data.Web;
 using EsccWebTeam.EastSussexGovUK.MasterPages;
 using Exceptionless;
+using Escc.Web;
 
 namespace Escc.Search.Website
 {
@@ -25,10 +25,11 @@ namespace Escc.Search.Website
             // Use standard parameter instead of the old tQ
             if (String.IsNullOrEmpty(Request.QueryString["q"]) && !String.IsNullOrEmpty(Request.QueryString["tq"]))
             {
-                var query = Request.QueryString["tq"];
-                var revisedUrl = Iri.RemoveQueryStringParameter(Request.Url, "tq");
-                revisedUrl = new Uri(Iri.PrepareUrlForNewQueryStringParameter(revisedUrl) + "q=" + query);
-                Http.Status301MovedPermanently(revisedUrl);
+                var query = HttpUtility.ParseQueryString(Request.QueryString.ToString());
+                query.Remove("tq");
+                query.Add("q", Request.QueryString["tq"]);
+                var revisedUrl = new Uri(Request.Url.Scheme + "://" + Request.Url.Authority + Request.Url.AbsolutePath + "?" + query);
+                new HttpStatus().MovedPermanently(revisedUrl);
             }
 
             // If there's a search query
@@ -89,18 +90,18 @@ namespace Escc.Search.Website
                     // Exception is "Unexpected end of file has occurred. The following elements are not closed: GSP. Line 3, position 19."
 
                     this.noResults.Visible = true;
-                    Http.Status502BadGateway();
+                    new HttpStatus().BadGateway();
                     ex.ToExceptionless().Submit();
                 }
             }
             else
             {
                 this.noResults.Visible = true;
-                Http.Status400BadRequest();
+                new HttpStatus().BadRequest();
             }
 
 #if (!DEBUG)
-            Http.CacheDaily(DateTime.Now.Hour, DateTime.Now.Minute);
+            new HttpCacheHeaders().CacheUntil(Response.Cache, DateTime.Now.AddDays(1));
 #endif
         }
 

@@ -53,7 +53,7 @@
                 <ItemTemplate>
                     <dt><a href="<%# Eval("Url") %>" class="<%# System.IO.Path.GetExtension(new Uri(Eval("Url").ToString()).AbsolutePath).Trim('.') %>"><%# (Eval("Title") == null) ? System.IO.Path.GetFileName(Eval("Url").ToString()) : FormatTitle(Eval("Title").ToString())%></a></dt>
                     <dd>
-                        <p class="url"><%# EsccWebTeam.Data.Web.Iri.ShortenForDisplay(Eval("Url") as Uri) %></p>
+                        <p class="url"><%# new Escc.Html.HtmlLinkFormatter().AbbreviateUrl(Eval("Url") as Uri) %></p>
                         <p><%# FormatExcerpt(Eval("Excerpt").ToString()) %></p>
                     </dd>
                 </ItemTemplate>
