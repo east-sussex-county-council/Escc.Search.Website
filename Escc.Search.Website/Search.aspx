@@ -7,10 +7,10 @@
 		LgtlType="Search results"
 		IsInSearch="false"
     />
-    <ClientDependency:Css runat="server" Files="SearchSmall;FormsSmall;ContentSmall" Moveable="False" />
+    <ClientDependency:Css runat="server" Files="SearchSmall;FormsSmall" Moveable="False" />
     <EastSussexGovUK:ContextContainer runat="server" Desktop="true">
-        <ClientDependency:Css runat="server" Files="ContentMedium;SearchMedium;FormsMedium" MediaConfiguration="Medium" Moveable="False"/>
-        <ClientDependency:Css runat="server" Files="ContentLarge;FormsLarge" MediaConfiguration="Large" Moveable="False"/>
+        <ClientDependency:Css runat="server" Files="SearchMedium;FormsMedium" MediaConfiguration="Medium" Moveable="False"/>
+        <ClientDependency:Css runat="server" Files="FormsLarge" MediaConfiguration="Large" Moveable="False"/>
     </EastSussexGovUK:ContextContainer>
 </asp:Content>
 
@@ -81,8 +81,6 @@
         <p>These search results are from <img src="<%= ResolveUrl("~/") %>img/google.png" alt="Google logo" width="80" height="27" class="google" /></p>
     </div>
 </asp:Content>
-
-<asp:Content runat="server" ContentPlaceHolderID="supporting" />
 
 <asp:Content runat="server" ContentPlaceHolderID="javascript">
     <ClientDependency:Script runat="server" Files="Search" />
