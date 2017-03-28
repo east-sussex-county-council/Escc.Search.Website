@@ -23,7 +23,7 @@ namespace Escc.Search.Website
             {
                 skinnable.Skin = new CustomerFocusSkin(ViewSelector.CurrentViewIs(MasterPageFile));
             }
-            
+
             // Use standard parameter instead of the old tQ
             if (String.IsNullOrEmpty(Request.QueryString["q"]) && !String.IsNullOrEmpty(Request.QueryString["tq"]))
             {
@@ -48,6 +48,8 @@ namespace Escc.Search.Website
                 }
                 this.heading.InnerHtml = this.Title;
 
+                this.catalogueSearch.InnerHtml = string.Format("<a href=\"https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY={0}&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0\"> Search our library catalogue </a>", HttpUtility.HtmlEncode(Request.QueryString["q"]));
+
                 // Search Google with standard options
                 var service = new GoogleSiteSearch(ConfigurationManager.AppSettings["GoogleSearchEngineId"]);
                 var cacheHours = new TimeSpan(Int32.Parse(ConfigurationManager.AppSettings["CacheHours"], CultureInfo.CurrentCulture), 0, 0);
@@ -65,6 +67,8 @@ namespace Escc.Search.Website
                     this.paging.TotalResults = response.TotalResults;
                     this.noResults.Visible = (this.paging.TotalResults == 0 && response.ResultsAvailable);
                     this.resultsUnavailable.Visible = (this.paging.TotalResults == 0 && !response.ResultsAvailable);
+                    if (this.noResults.Visible == false) { this.searchLibrary.InnerHtml = string.Format("<a href=\"https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY={0}&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0\"> search the library catalogue </a>", HttpUtility.HtmlEncode(Request.QueryString["q"])); }
+
 
                     var searchResults = response.Results();
                     this.results.DataSource = searchResults;
