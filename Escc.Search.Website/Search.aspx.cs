@@ -48,7 +48,7 @@ namespace Escc.Search.Website
                 }
                 this.heading.InnerHtml = this.Title;
 
-                this.catalogueSearch.InnerHtml = string.Format("<a href=\"https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY={0}&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0\"> Search our library catalogue for: {1} </a>", HttpUtility.HtmlEncode(Request.QueryString["q"]), HttpUtility.HtmlEncode(Request.QueryString["q"]));
+                this.catalogueSearch.InnerHtml = string.Format("<a href=\"https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY={0}&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0\"> Search the library catalogue for '{1}' </a>", HttpUtility.HtmlEncode(Request.QueryString["q"]), HttpUtility.HtmlEncode(Request.QueryString["q"]));
 
                 // Search Google with standard options
                 var service = new GoogleSiteSearch(ConfigurationManager.AppSettings["GoogleSearchEngineId"]);
@@ -67,7 +67,7 @@ namespace Escc.Search.Website
                     this.paging.TotalResults = response.TotalResults;
                     this.noResults.Visible = (this.paging.TotalResults == 0 && response.ResultsAvailable);
                     this.resultsUnavailable.Visible = (this.paging.TotalResults == 0 && !response.ResultsAvailable);
-                    if (this.noResults.Visible == false) { this.searchLibrary.InnerHtml = string.Format("<a href=\"https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY={0}&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0\"> search the library catalogue </a>", HttpUtility.HtmlEncode(Request.QueryString["q"])); }
+                    if (this.noResults.Visible == false) { this.searchLibrary.InnerHtml = string.Format("<a href=\"https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY={0}&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0\"> Search the library catalogue for '{1}' </a>", HttpUtility.HtmlEncode(Request.QueryString["q"]), HttpUtility.HtmlEncode(Request.QueryString["q"])); }
 
 
                     var searchResults = response.Results();
