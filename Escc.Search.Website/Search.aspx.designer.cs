@@ -22,6 +22,15 @@ namespace Escc.Search.Website {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl heading;
         
         /// <summary>
+        /// searchLibrary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchLibrary;
+        
+        /// <summary>
         /// spelling control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace Escc.Search.Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder noResults;
+        
+        /// <summary>
+        /// catalogueSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl catalogueSearch;
         
         /// <summary>
         /// resultsUnavailable control.

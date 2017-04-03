@@ -18,6 +18,7 @@
     <div class="article">
         <div class="text-content content">
             <h1 id="heading" runat="server">Search results</h1>
+            <p id="searchLibrary" runat="server"></p>
             <asp:placeholder runat="server" id="spelling" visible="false">
                 <p class="spelling"><strong>Did you mean <asp:placeholder id="suggestions" runat="server" />?</strong></p>
             </asp:placeholder>
@@ -31,6 +32,7 @@
                 <p>Things you could do:</p>
 
                 <ul>
+                <li id="catalogueSearch" runat="server"> </li>
                 <li>Check your spelling</li>
                 <li>Use other words related to your topic</li>
                 <li>Try navigating to the information you need, starting with the main menu at the top of this page</li>
