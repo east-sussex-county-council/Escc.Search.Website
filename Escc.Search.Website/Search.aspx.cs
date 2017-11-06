@@ -11,6 +11,7 @@ using Escc.EastSussexGovUK.WebForms;
 using Escc.Search.Google;
 using Exceptionless;
 using Escc.Web;
+using Escc.Net;
 
 namespace Escc.Search.Website
 {
@@ -51,7 +52,7 @@ namespace Escc.Search.Website
                 this.catalogueSearch.InnerHtml = string.Format("<a href=\"https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY={0}&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0\"> Search the library catalogue for '{1}' </a>", HttpUtility.HtmlEncode(Request.QueryString["q"]), HttpUtility.HtmlEncode(Request.QueryString["q"]));
 
                 // Search Google with standard options
-                var service = new GoogleSiteSearch(ConfigurationManager.AppSettings["GoogleSearchEngineId"]);
+                var service = new GoogleCustomSearch(ConfigurationManager.AppSettings["GoogleSearchApiKey"], ConfigurationManager.AppSettings["GoogleSearchEngineId"], new ConfigurationProxyProvider());
                 var cacheHours = new TimeSpan(Int32.Parse(ConfigurationManager.AppSettings["CacheHours"], CultureInfo.CurrentCulture), 0, 0);
                 service.CacheStrategy = new FileCacheStrategy(Server.MapPath(ConfigurationManager.AppSettings["CacheFilePath"]), cacheHours);
                 var query = new GoogleQuery(Request.QueryString["q"]);
