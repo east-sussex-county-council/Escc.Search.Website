@@ -1,0 +1,108 @@
+﻿@model Escc.Search.Website.SearchResultsViewModel
+@using ClientDependency.Core.Mvc
+@using Escc.ClientDependencyFramework
+@{ 
+    Html.RequiresCss(CssFileAlias.Resolve("FormsSmall"));
+    Html.RequiresCss("~/css/min/search-small.css");
+    Html.RequiresCss(CssFileAlias.Resolve("FormsMedium"), MediaQueryAlias.Resolve("Medium"));
+    Html.RequiresCss("~/css/min/search-medium.css", MediaQueryAlias.Resolve("Medium"));
+    Html.RequiresCss(CssFileAlias.Resolve("FormsLarge"), MediaQueryAlias.Resolve("Large"));
+    Html.RequiresJs("~/js/min/search.js");
+}
+@functions{
+    private static string FormatTitle(string title)
+    {
+        if (String.IsNullOrEmpty(title)) return title;
+
+        return title
+            .Replace(" – East Sussex County Council", String.Empty) // remove standard suffix from title
+            .Replace(" – East Sussex County <b>...</b>", String.Empty)
+            .Replace(" – East Sussex <b>...</b>", String.Empty)
+            .Replace(" – East <b>...</b>", String.Empty)
+            .Replace("<b>...</b>", "&#8230;") // use correct character
+            .Replace("<b>", "<mark>").Replace("</b>", "</mark>"); // use correct markup
+    }
+
+    private static string FormatExcerpt(string excerpt)
+    {
+        if (String.IsNullOrEmpty(excerpt)) return excerpt;
+
+        return excerpt.Replace("<br>", String.Empty) // allow text to wrap freely as window is resized
+            .Replace("<b>...</b>", "<span class=\"ellipsis\">&#8230;</span>") // use correct character
+            .Replace("<b>", "<mark>").Replace("</b>", "</mark>"); // use correct markup
+    }
+}
+<div class="article">
+    <div class="text-content content">
+        <h1>@Model.Metadata.Title</h1>
+        @if (Model.Paging.TotalResults > 0)
+        {
+            <p><a href="https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY=@Uri.EscapeDataString(Model.SearchTerm)&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0">Search the library catalogue for '@Model.SearchTerm'</a></p>
+        }
+
+        @if (Model.SpellingSuggestions.Count > 0)
+        {
+            var html = new System.Text.StringBuilder();
+            foreach (string suggestion in Model.SpellingSuggestions)
+            {
+                if (html.Length > 0)
+                {
+                    html.Append(" or ");
+                };
+                html.Append("<a href=\"").Append(Request.Url.LocalPath).Append("?q=").Append(Uri.EscapeDataString(suggestion)).Append("\">").Append(suggestion).Append("</a>");
+            }
+            <p class="spelling"><strong>Did you mean @html.ToString()?</strong></p>
+        }
+
+        @if (Model.Paging.TotalResults == 0 && Model.ResultsAvailable)
+        {
+            <p>Sorry, there are no pages on this site that match your search.</p>
+
+            <p>Things you could do:</p>
+
+            <ul>
+                <li><a href="https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY=@Uri.EscapeDataString(Model.SearchTerm)&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0">Search the library catalogue for '@Uri.EscapeDataString(Model.SearchTerm)'</a></li>
+                <li>Check your spelling</li>
+                <li>Use other words related to your topic</li>
+                <li>Try navigating to the information you need, starting with the main menu at the top of this page</li>
+            </ul>
+
+            <p>We want to make this site easy for everyone to use. Please tell us if you still need help, or want to report your problem:</p>
+
+            <p><a href="/contactus/emailus/feedback.aspx">Contact the web team</a> for help, and to let us know.</p>
+        }
+        else if (Model.Paging.TotalResults == 0 && !Model.ResultsAvailable)
+        {
+            <p>Sorry, only the first 1000 results are available to view.</p>
+            <p>We are using Google search, and this restriction is a part of their service.</p>
+        }
+        else
+        {
+            Html.RenderPartial("~/Views/PagingBarControl.ascx", Model.Paging);                   
+            <dl>
+                @foreach (var searchResult in Model.Results)
+                {
+                    <dt><a href="@searchResult.Url" class="@System.IO.Path.GetExtension(new Uri(searchResult.Url.ToString()).AbsolutePath).Trim('.')">@(String.IsNullOrEmpty(searchResult.Title) ? System.IO.Path.GetFileName(searchResult.Url.ToString()) : FormatTitle(searchResult.Title))</a></dt>
+                    <dd>
+                        <p class="url">@(new Escc.Html.HtmlLinkFormatter().AbbreviateUrl(searchResult.Url))</p>
+                        <p>@Html.Raw(FormatExcerpt(searchResult.Excerpt))</p>
+                    </dd>
+                }
+            </dl>
+            Html.RenderPartial("~/Views/PagingBarControl.ascx", Model.Paging);
+        }
+    </div>
+</div>
+<div class="supporting text-content content-small content-medium refine">
+    <form method="get" action="search.aspx" class="form short-form">
+        <h2>Search within these results</h2>
+        <label for="refine" class="aural">Search for:</label>
+        <input type="hidden" name="q" value="@HttpUtility.HtmlEncode(Model.SearchTerm)" />
+        <input type="search" name="refine" id="refine" value="@HttpUtility.HtmlEncode(Model.SearchTermWithinResults)" />
+        <input type="submit" value="Search" class="button" />
+    </form>
+</div>
+
+<div class="supporting text-content content-small content-medium">
+    <p>These search results are from <img src="@Url.Content("~/img/google.png")" alt="Google logo" width="80" height="27" class="google" /></p>
+</div>
