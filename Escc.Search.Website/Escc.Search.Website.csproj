@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Escc.Search.Website</RootNamespace>
     <AssemblyName>Escc.Search.Website</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <SccProjectName>
     </SccProjectName>
@@ -133,7 +133,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Escc.Search.Google, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Escc.Search.Google.2.0.0-alpha1\lib\Escc.Search.Google.dll</HintPath>
+      <HintPath>..\packages\Escc.Search.Google.2.0.0\lib\net462\Escc.Search.Google.dll</HintPath>
     </Reference>
     <Reference Include="Escc.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f, processorArchitecture=MSIL">
       <HintPath>..\packages\Escc.Web.1.0.1\lib\Escc.Web.dll</HintPath>
