@@ -40,7 +40,7 @@
             <p><a href="https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY=@Uri.EscapeDataString(Model.SearchTerm)&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0">Search the library catalogue for '@Model.SearchTerm'</a></p>
         }
 
-        @if (Model.SpellingSuggestions.Count > 0)
+        @if (Model.SpellingSuggestions?.Count > 0)
         {
             var html = new System.Text.StringBuilder();
             foreach (string suggestion in Model.SpellingSuggestions)
