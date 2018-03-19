@@ -296,6 +296,7 @@
     <None Include="packages.config" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\web.example.config" />
     <None Include="Web.example.config" />
     <None Include="YUICompressor.msbuild">
       <SubType>Designer</SubType>
