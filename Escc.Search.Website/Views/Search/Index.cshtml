@@ -51,7 +51,7 @@
                 };
                 html.Append("<a href=\"").Append(Request.Url.LocalPath).Append("?q=").Append(Uri.EscapeDataString(suggestion)).Append("\">").Append(suggestion).Append("</a>");
             }
-            <p class="spelling"><strong>Did you mean @html.ToString()?</strong></p>
+            <p class="spelling"><strong>Did you mean @Html.Raw(html.ToString())?</strong></p>
         }
 
         @if (Model.Paging.TotalResults == 0 && Model.ResultsAvailable)
@@ -73,7 +73,7 @@
         }
         else if (Model.Paging.TotalResults == 0 && !Model.ResultsAvailable)
         {
-            <p>Sorry, only the first 1000 results are available to view.</p>
+            <p>Sorry, only the first @Model.Paging.MaximumResultsAvailable results are available to view.</p>
             <p>We are using Google search, and this restriction is a part of their service.</p>
         }
         else
@@ -93,6 +93,8 @@
         }
     </div>
 </div>
+@if (Model.Paging.TotalResults > 0)
+{
 <div class="supporting text-content content-small content-medium refine">
     <form method="get" action="search.aspx" class="form short-form">
         <h2>Search within these results</h2>
@@ -102,6 +104,7 @@
         <input type="submit" value="Search" class="button" />
     </form>
 </div>
+}
 
 <div class="supporting text-content content-small content-medium">
     <p>These search results are from <img src="@Url.Content("~/img/google.png")" alt="Google logo" width="80" height="27" class="google" /></p>

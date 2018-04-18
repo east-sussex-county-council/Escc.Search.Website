@@ -49,12 +49,19 @@ namespace Escc.Search.Website
                 query.PageSize = model.Paging.PageSize;
                 query.Page = model.Paging.CurrentPage;
 
-                var response = service.Search(query);
+                if ((model.Paging.PageSize * model.Paging.CurrentPage) <= model.Paging.MaximumResultsAvailable) 
+                {
+                    var response = service.Search(query);
 
-                // Display results
-                model.Paging.TotalResults = response.TotalResults;
-                model.Results = response.Results();
-                model.SpellingSuggestions = response.SpellingSuggestions();
+                    model.Paging.TotalResults = response.TotalResults;
+                    model.Results = response.Results();
+                    model.SpellingSuggestions = response.SpellingSuggestions();
+                    model.ResultsAvailable = true;
+                }
+                else
+                {
+                    model.ResultsAvailable = false;
+                }
 
 #if (!DEBUG)
                 new HttpCacheHeaders().CacheUntil(Response.Cache, DateTime.Now.AddDays(1));
