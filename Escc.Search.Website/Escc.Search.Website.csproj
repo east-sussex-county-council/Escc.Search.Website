@@ -64,19 +64,14 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClientDependency.Core, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ClientDependency.1.9.2\lib\net45\ClientDependency.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ClientDependency.Core, Version=1.9.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClientDependency.1.9.7\lib\net45\ClientDependency.Core.dll</HintPath>
     </Reference>
     <Reference Include="ClientDependency.Core.Mvc, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClientDependency-Mvc5.1.8.0.0\lib\net45\ClientDependency.Core.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EcmaScript.NET, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YUICompressor.NET.MSBuild.2.7.0.0\lib\NET20\EcmaScript.NET.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EmbeddedResourceVirtualPathProvider, Version=1.0.5918.17881, Culture=neutral, processorArchitecture=MSIL">
@@ -143,10 +138,6 @@
     </Reference>
     <Reference Include="Exceptionless.Mvc, Version=1.5.2121.0, Culture=neutral, PublicKeyToken=fc181f0a46f65747, processorArchitecture=MSIL">
       <HintPath>..\packages\Exceptionless.Mvc.1.5.2121\lib\net45\Exceptionless.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\YUICompressor.NET.2.0.0.0\lib\NET20\Iesi.Collections.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -242,24 +233,13 @@
       <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Yahoo.Yui.Compressor, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YUICompressor.NET.MSBuild.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Yahoo.Yui.Compressor.Build.MsBuild, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YUICompressor.NET.MSBuild.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.Build.MsBuild.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\min\search-medium.css" />
-    <Content Include="css\min\search-small.css" />
-    <None Include="css\search-small.css" />
-    <None Include="css\search-medium.css" />
+    <Content Include="css\search-small.css" />
+    <Content Include="css\search-medium.css" />
     <Content Include="Global.asax" />
     <Content Include="img\google.png" />
-    <Content Include="js\min\search.js" />
-    <None Include="js\search.js" />
+    <Content Include="js\search.js" />
     <Content Include="Views\PagingBarControl.ascx" />
     <Content Include="OpenSearch.xml" />
     <Content Include="Web.config">
@@ -298,9 +278,6 @@
     <Content Include="Views\Search\Index.cshtml" />
     <None Include="Views\web.example.config" />
     <None Include="Web.example.config" />
-    <None Include="YUICompressor.msbuild">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -319,11 +296,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (if not exist "$(ProjectDir)css\min" md "$(ProjectDir)css\min")
-if "$(ConfigurationName)" == "Release" del "$(ProjectDir)css\min\*.*" /Q 
-if "$(ConfigurationName)" == "Release" (if not exist "$(ProjectDir)js\min" md "$(ProjectDir)js\min")
-if "$(ConfigurationName)" == "Release" del "$(ProjectDir)js\min\*.*" /Q 
-if "$(ConfigurationName)" == "Release" "$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)YUICompressor.msbuild" /p:ConfigurationName=$(ConfigurationName)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

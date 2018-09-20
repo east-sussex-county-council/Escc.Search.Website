@@ -3,11 +3,11 @@
 @using Escc.ClientDependencyFramework
 @{ 
     Html.RequiresCss(CssFileAlias.Resolve("FormsSmall"));
-    Html.RequiresCss("~/css/min/search-small.css");
+    Html.RequiresCss("~/css/search-small.css");
     Html.RequiresCss(CssFileAlias.Resolve("FormsMedium"), MediaQueryAlias.Resolve("Medium"));
-    Html.RequiresCss("~/css/min/search-medium.css", MediaQueryAlias.Resolve("Medium"));
+    Html.RequiresCss("~/css/search-medium.css", MediaQueryAlias.Resolve("Medium"));
     Html.RequiresCss(CssFileAlias.Resolve("FormsLarge"), MediaQueryAlias.Resolve("Large"));
-    Html.RequiresJs("~/js/min/search.js");
+    Html.RequiresJs("~/js/search.js");
 }
 @functions{
     private static string FormatTitle(string title)
