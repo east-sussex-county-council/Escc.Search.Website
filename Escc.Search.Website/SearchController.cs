@@ -1,6 +1,7 @@
 ﻿using Escc.EastSussexGovUK.Mvc;
 using Escc.Net.Configuration;
 using Escc.Search.Google;
+using Escc.Web;
 using Exceptionless;
 using System;
 using System.Collections.Generic;
@@ -66,9 +67,7 @@ namespace Escc.Search.Website
                     model.ResultsAvailable = false;
                 }
 
-#if (!DEBUG)
                 new HttpCacheHeaders().CacheUntil(Response.Cache, DateTime.Now.AddDays(1));
-#endif
             }
             else
             {
