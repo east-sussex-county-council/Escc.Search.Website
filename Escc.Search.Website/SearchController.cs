@@ -1,11 +1,13 @@
-﻿using Escc.Net;
+﻿using Escc.EastSussexGovUK.Mvc;
+using Escc.Net.Configuration;
 using Escc.Search.Google;
-using Escc.Web;
+using Exceptionless;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,9 +16,10 @@ namespace Escc.Search.Website
     public class SearchController : Controller
     {
         // GET: Search
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            RedirectOldUrls();
+            var redirect = RedirectOldUrls();
+            if (redirect != null) return redirect;
 
             var model = new SearchResultsViewModel();
             model.SearchTerm = Request.QueryString["q"];
@@ -51,7 +54,7 @@ namespace Escc.Search.Website
 
                 if ((model.Paging.PageSize * model.Paging.CurrentPage) <= model.Paging.MaximumResultsAvailable) 
                 {
-                    var response = service.Search(query);
+                    var response = await service.SearchAsync(query);
 
                     model.Paging.TotalResults = response.TotalResults;
                     model.Results = response.Results();
@@ -72,11 +75,30 @@ namespace Escc.Search.Website
                 Response.StatusCode = 400;
             }
 
+            var templateRequest = new EastSussexGovUKTemplateRequest(Request);
+            try
+            {
+                model.WebChat = await templateRequest.RequestWebChatSettingsAsync();
+            }
+            catch (Exception ex)
+            {
+                // Catch and report exceptions - don't throw them and cause the page to fail
+                ex.ToExceptionless().Submit();
+            }
+            try
+            {
+                model.TemplateHtml = await templateRequest.RequestTemplateHtmlAsync();
+            }
+            catch (Exception ex)
+            {
+                // Catch and report exceptions - don't throw them and cause the page to fail
+                ex.ToExceptionless().Submit();
+            }
 
             return View(model);
         }
 
-        private void RedirectOldUrls()
+        private ActionResult RedirectOldUrls()
         {
             // Use standard parameter instead of the old tQ
             if (String.IsNullOrEmpty(Request.QueryString["q"]) && !String.IsNullOrEmpty(Request.QueryString["tq"]))
@@ -85,8 +107,9 @@ namespace Escc.Search.Website
                 query.Remove("tq");
                 query.Add("q", Request.QueryString["tq"]);
                 var revisedUrl = new Uri(Request.Url, new Uri(Request.Url.AbsolutePath + "?" + query, UriKind.Relative));
-                new HttpStatus().MovedPermanently(revisedUrl);
+                return new RedirectResult(revisedUrl.ToString(), true);
             }
+            return null;
         }
     }
 }
