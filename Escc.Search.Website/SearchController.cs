@@ -26,9 +26,7 @@ namespace Escc.Search.Website
             model.SearchTerm = Request.QueryString["q"];
             model.SearchTermWithinResults = Request.QueryString["refine"];
             model.Metadata.Title = "Search results";
-            model.Metadata.DateCreated = "2012-03-16";
-            model.Metadata.IpsvPreferredTerms = "Local government";
-            model.Metadata.LgtlType = "Search results";
+            model.Metadata.DateCreated = new DateTimeOffset(new DateTime(2012, 3, 16));
             model.Metadata.IsInSearch = false;
 
             // If there's a search query
