@@ -64,13 +64,12 @@ namespace Escc.Search.Website
                 {
                     model.ResultsAvailable = false;
                 }
-
-                new HttpCacheHeaders().CacheUntil(Response.Cache, DateTime.Now.AddDays(1));
             }
             else
             {
-                Response.StatusCode = 400;
+                model.ResultsAvailable = true;
             }
+            new HttpCacheHeaders().CacheUntil(Response.Cache, DateTime.Now.AddDays(1));
 
             var templateRequest = new EastSussexGovUKTemplateRequest(Request);
             try

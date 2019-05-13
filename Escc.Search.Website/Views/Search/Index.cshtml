@@ -56,12 +56,13 @@
 
         @if (Model.Paging.TotalResults == 0 && Model.ResultsAvailable)
         {
+            var librarySearch = String.IsNullOrWhiteSpace(Model.SearchTerm) ? string.Empty : Uri.EscapeDataString(Model.SearchTerm);
             <p>Sorry, there are no pages on this site that match your search.</p>
 
             <p>Things you could do:</p>
 
             <ul>
-                <li><a href="https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY=@Uri.EscapeDataString(Model.SearchTerm)&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0">Search the library catalogue for '@Uri.EscapeDataString(Model.SearchTerm)'</a></li>
+                <li><a href="https://e-library.eastsussex.gov.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?ENTRY_NAME=BS&ENTRY=@librarySearch&ENTRY_TYPE=K&NRECS=20&SORTS=HBT.SOVR&SEARCH_FORM=%2Fcgi-bin%2Fspydus.exe%2FMSGTRN%2FOPAC%2FBSEARCH&CF=GEN&ISGLB=0">Search the library catalogue for '@librarySearch'</a></li>
                 <li>Check your spelling</li>
                 <li>Use other words related to your topic</li>
                 <li>Try navigating to the information you need, starting with the main menu at the top of this page</li>
